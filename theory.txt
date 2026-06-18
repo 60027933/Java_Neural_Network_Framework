@@ -1,0 +1,23 @@
+key:
+i = inputs
+c = weighted value of a neuron's output
+n = neuron's output value (the post-activation value)
+w = weight of a connection alone
+b = a neuron's bias value
+x = neuron's pre-activation value, after bias
+
+so the way a neural network works is: individual neurons make up layers. Input data i is fed into the first non-input layer (through connections with weights). Data then runs layer to layer. Each neuron has many connections leading to it and from it; every neuron in one layer is connected to every neuron in the next layer through these connections (traditionally).
+
+1. data n travels through a connection, which applies a weight (n*w) before passing to intended neuron. This happens for every connection traveling to intended neuron.
+
+2. the neuron applies a bias to the weighted data c it receives from all connections, so (c1+c2...cn)+b.
+
+3. Then this value x is ran through an activation function which further modifies it. This activation function denotes a transformation of data f(x)=n. This transformation's purpose is to introduce nonlinearity, so that arbitrary 'shapes' and therefore arbitrary decisions can be made based on the data.
+
+4. The network takes the values in the layer's neurons, and passes them to the next layer through connections.
+
+
+Input neurons first layer push to hidden layers push to output layer. In the output layer, the data is processed normally until the activation function, which can be changed to represent, for instance, the probabilities that the prediction is correct (confidence). The neuron with the highest value is (usually) chosen to represent the final output.
+
+
+
