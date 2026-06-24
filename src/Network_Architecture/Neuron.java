@@ -19,7 +19,7 @@ public class Neuron {
         }
         return sum;
     }
-    public void find_activation(Connection[] c){
+    public void calc_activation(Connection[] c){
         activation = 0; // 'reset' the neuron
         activation = sum_connections(c);
         activation += bias;
