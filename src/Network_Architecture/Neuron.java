@@ -11,7 +11,6 @@ public class Neuron {
     public Neuron(actfn fn){
         this.fn = fn;
     }
-    //
     public float sum_connections(Connection[] c){
         float sum = 0;
         for(int i = 0; i < c.length; i++){
