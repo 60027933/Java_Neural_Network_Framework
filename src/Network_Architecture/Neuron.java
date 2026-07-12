@@ -15,7 +15,7 @@ public class Neuron {
     public float sum_connections(Connection[] c){
         float sum = 0;
         for(int i = 0; i < c.length; i++){
-            sum += c[i].baseNeuron.activation * c[i].weight;
+            sum += c[i].base_neuron.activation * c[i].weight;
         }
         return sum;
     }
