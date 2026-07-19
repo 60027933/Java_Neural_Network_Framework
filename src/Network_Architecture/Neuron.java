@@ -4,10 +4,9 @@ public class Neuron {
     //NEEDS TO STORE: ACTIVATION FUNCTION, BIAS
     // Activation is the value of the neuron.
     public actfn fn;
-    public float activation = 0; // 0 base value; 
-    public float bias = 0; // 0 base;
+    public double activation = 0; // 0 base value; 
+    public double bias = 0; // 0 base;
     public Connection[] inputConnections; // up to the network to properly initialize this
-    
     public Neuron(actfn fn){
         this.fn = fn;
     }
@@ -18,9 +17,9 @@ public class Neuron {
         }
         return sum;
     }
-    public void calc_activation(Connection[] c){
+    public void calc_activation(){
         activation = 0; // 'reset' the neuron
-        activation = sum_connections(c);
+        activation = sum_connections(inputConnections);
         activation += bias;
         activation = activation_funcs.apply(activation,fn);
     }
