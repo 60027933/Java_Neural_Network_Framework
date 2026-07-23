@@ -27,17 +27,20 @@ public class Network {
             }
         }
         // for every layer,
+            //and for every neuron in that layer,
+            
         for(int layer = 0; layer < layers.length-1; layer++){ // Minus 1 because the final layer does not have outgoing connections.
             //for every neuron in that layer,
-            for(int current_neuron = 0; current_neuron < layers[layer].neurons.length; current_neuron++){
+            for(int neuron = 0; neuron < layers[layer].neurons.length; neuron++){
                 //A new connection will be initialized with this current neuron and every single neuron in the NEXT layer
-                for(int next_layer_current_neuron = 0; next_layer_current_neuron < layers[layer+1].neurons.length; next_layer_current_neuron++){
+                for(int next_layer_neuron = 0; next_layer_neuron < layers[layer+1].neurons.length; next_layer_neuron++){
                     //initialize the connection
-                    connections[layer][current_neuron][next_layer_current_neuron] = new Connection(layers[layer].neurons[current_neuron],layers[layer+1].neurons[next_layer_current_neuron],1);
-                    //Update the 'next_layer_current_neuron' 'inputneurons' with the new connection
-                    for(int i = 0; i < layers[layer+1].neurons[next_layer_current_neuron].inputConnections.length; i++){
-                        if(layers[layer+1].neurons[next_layer_current_neuron].inputConnections[i] == null){
-                            layers[layer+1].neurons[next_layer_current_neuron].inputConnections[i] = connections[layer][current_neuron][next_layer_current_neuron];
+                    connections[layer][neuron][next_layer_neuron] = new Connection(layers[layer].neurons[neuron],layers[layer+1].neurons[next_layer_neuron],1);
+                    //Update the 'next_layer_neuron' 'inputneurons' with the new connection
+                    for(int i = 0; i < layers[layer+1].neurons[next_layer_neuron].inputConnections.length; i++){
+                        if(layers[layer+1].neurons[next_layer_neuron].inputConnections[i] == null){
+                            layers[layer+1].neurons[next_layer_neuron].inputConnections[i] = connections[layer][neuron][next_layer_neuron];
+                            break; //
                         }
                     }
                 }  
