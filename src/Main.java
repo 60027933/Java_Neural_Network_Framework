@@ -7,11 +7,12 @@ public class Main {
         Layer[] test_layers = new Layer[] {
             new Layer(actfn.RELU,20),
             new Layer(actfn.SIGMOID, 50),
+            new Layer(actfn.LINEAR,10)
         };
         Network test_network = new Network(test_layers);
 
         double[] inputs = new double[] {
-            1.0,2.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0
+            0.0,2.0,3.0,3.0,3.0,2.0,3.0,3.0,1.0,3.0,3.0,3.0,3.0,9.0,3.0,3.0,1.0,3.0,3.0,3.0
         };
         test_network.run(inputs);
     }
