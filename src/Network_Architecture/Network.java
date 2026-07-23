@@ -2,44 +2,37 @@ package Network_Architecture;
 
 public class Network {
     public Layer[] layers;
-    public Connection[][][] connections;
-    /*
-    { // Every layer 
-        { // Every Neuron
-            { // Every Connection
-            }
-        }
-    }
-    */
+
 
     public Network(Layer[] layers){
         this.layers = layers;
         initialize();
     }
     public void initialize(){
-        // We need to create and index the connections for neurons.
-        connections = new Connection[layers.length][find_largest_layer_length()][find_largest_layer_length()]; // some space will be unused due to variable sizes of layers.
-        // We also need to initialize the arrays for every neuron's 'inputNeurons'
-        for(int init_c_layer = 1; init_c_layer < layers.length; init_c_layer++){ //1 because the first layer does not have inputNeurons
-            for(int init_c_neuron = 0; init_c_neuron < layers[init_c_layer].neurons.length; init_c_neuron++){
+        // We need to initialize the arrays for every neuron's 'inputNeurons'
+        for(int _L = 1; _L < layers.length; _L++){ //1 because the first layer does not have inputNeurons
+            for(int init_c_neuron = 0; init_c_neuron < layers[_L].neurons.length; init_c_neuron++){
                 //Every neuron will have connections to the neuron in the previous layer
-                layers[init_c_layer].neurons[init_c_neuron].inputConnections = new Connection[layers[init_c_layer-1].neurons.length];
+                layers[_L].neurons[init_c_neuron].inputConnections = new Connection[layers[_L-1].neurons.length];
             }
         }
-        // for every layer,
-            //and for every neuron in that layer,
-            
-        for(int layer = 0; layer < layers.length-1; layer++){ // Minus 1 because the final layer does not have outgoing connections.
+
+        // for every layer,            
+        for(int L = 0; L < layers.length-1; L++){ // Minus 1 because the final layer does not have outgoing connections.
             //for every neuron in that layer,
-            for(int neuron = 0; neuron < layers[layer].neurons.length; neuron++){
+            for(int N = 0; N < layers[L].neurons.length; N++){
                 //A new connection will be initialized with this current neuron and every single neuron in the NEXT layer
-                for(int next_layer_neuron = 0; next_layer_neuron < layers[layer+1].neurons.length; next_layer_neuron++){
-                    //initialize the connection
-                    connections[layer][neuron][next_layer_neuron] = new Connection(layers[layer].neurons[neuron],layers[layer+1].neurons[next_layer_neuron],1);
-                    //Update the 'next_layer_neuron' 'inputneurons' with the new connection
-                    for(int i = 0; i < layers[layer+1].neurons[next_layer_neuron].inputConnections.length; i++){
-                        if(layers[layer+1].neurons[next_layer_neuron].inputConnections[i] == null){
-                            layers[layer+1].neurons[next_layer_neuron].inputConnections[i] = connections[layer][neuron][next_layer_neuron];
+                for(int N_L = 0; N_L < layers[L+1].neurons.length; N_L++){ // NEXT_LAYER [neuron]
+                    Connection c = new Connection
+                    (
+                        layers[L].neurons[N], // start_neuron
+                        layers[L+1].neurons[N_L], // end_neuron
+                        Math.random()*2-1 // weight
+                    );
+                    //Update the 'n_neuron' 'inputneurons' with the new connection
+                    for(int i = 0; i < layers[L+1].neurons[N_L].inputConnections.length; i++){
+                        if(layers[L+1].neurons[N_L].inputConnections[i] == null){
+                            layers[L+1].neurons[N_L].inputConnections[i] = c;
                             break; //
                         }
                     }
