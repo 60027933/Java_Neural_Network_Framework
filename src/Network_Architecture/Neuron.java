@@ -10,8 +10,8 @@ public class Neuron {
     public Neuron(actfn fn){
         this.fn = fn;
     }
-    public float sum_connections(Connection[] c){
-        float sum = 0;
+    public double sum_connections(Connection[] c){
+        double sum = 0;
         for(int i = 0; i < c.length; i++){
             sum += c[i].base_neuron.activation * c[i].weight;
         }
