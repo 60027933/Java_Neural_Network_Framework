@@ -10,7 +10,7 @@ public class activation_funcs {
                 val = val > 0 ? 1 : 0;    
                 break;
             case SIGMOID:
-                val = 1/(1+(Math.pow(Math.E,-val))); 
+                val = 1/(1+(Math.exp(-val)));
                 break;
             case LINEAR:
                 break; 
