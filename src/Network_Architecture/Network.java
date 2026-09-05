@@ -22,18 +22,19 @@ public class Network {
             //for every neuron in that layer,
             for(int N = 0; N < layers[L].neurons.length; N++){
                 //A new connection will be initialized with this current neuron and every single neuron in the NEXT layer
-                for(int N_L = 0; N_L < layers[L+1].neurons.length; N_L++){ // NEXT_LAYER [neuron]
+                for(int N_L = 0; N_L < layers[L+1].neurons.length; N_L++){ // every neuron in the next layer
+
                     Connection c = new Connection
                     (
                         layers[L].neurons[N], // start_neuron
                         layers[L+1].neurons[N_L], // end_neuron
-                        Math.random()*2-1 // weight
+                        Math.random()*2-1 // weight, random to start with
                     );
                     //Update the 'n_neuron' 'inputneurons' with the new connection
-                    for(int i = 0; i < layers[L+1].neurons[N_L].inputConnections.length; i++){
+                    for(int i = 0; i < layers[L+1].neurons[N_L].inputConnections.length; i++){ // to get the next empty position in the inputConnections
                         if(layers[L+1].neurons[N_L].inputConnections[i] == null){
                             layers[L+1].neurons[N_L].inputConnections[i] = c;
-                            break; //
+                            break; // otherwise we'll just fill up all the empty connections with this specific connection
                         }
                     }
                 }  
