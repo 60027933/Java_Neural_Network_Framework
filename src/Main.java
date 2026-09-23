@@ -6,8 +6,8 @@ public class Main {
         
         Layer[] test_layers = new Layer[] {
             new Layer(actfn.RELU,20),
-            new Layer(actfn.SIGMOID, 50),
-            new Layer(actfn.LINEAR,10)
+            new Layer(actfn.RELU, 50),
+            new Layer(actfn.SIGMOID,10)
         };
         Network test_network = new Network(test_layers);
 
