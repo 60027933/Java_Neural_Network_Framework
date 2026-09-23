@@ -24,6 +24,7 @@ public class Network {
                 //A new connection will be initialized with this current neuron and every single neuron in the NEXT layer
                 for(int N_L = 0; N_L < layers[L+1].neurons.length; N_L++){ // every neuron in the next layer
 
+                    //INITIALIZE CONNECTION (INITAL WEIGHT VALUE HERE)
                     Connection c = new Connection
                     (
                         layers[L].neurons[N], // start_neuron
@@ -62,9 +63,7 @@ public class Network {
             System.out.println("You gave me " + inputs.length + " inputs; You should have included " + layers[0].neurons.length + " inputs.");
         }
     }
-    public Connection init_connection(Neuron target_neuron, Neuron base_neuron){ // initialized weight to be one
-        return new Connection(base_neuron,target_neuron,1);
-    }
+
     public int find_largest_layer_length(){
         int largestLayer = 0;
         for(int layer = 0; layer < layers.length; layer++){
