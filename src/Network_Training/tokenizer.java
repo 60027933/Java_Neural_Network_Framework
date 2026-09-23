@@ -20,7 +20,7 @@ public class tokenizer {
                     String[] words = line.split(" ");
 
                     for(int w = 0; w < words.length; w++){
-                        if(check_if_token_is_in_tokenizer(words[w].toString()) == false){
+                        if(in_tokenizer(words[w].toString()) == false){
                             tokens.add(words[w].toString());
                         }
                     }
@@ -30,7 +30,7 @@ public class tokenizer {
             }
         }
     }
-    public boolean check_if_token_is_in_tokenizer(String token){
-        return tokens.contains(token) ? true : false;
+    public boolean in_tokenizer(String token){
+        return tokens.contains(token);
     }
 }
